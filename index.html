@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فيو كاست - تطبيق البث الرياضي الأمثل</title>
+  
+  <!-- خط تاجوال العربي من جوجل -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 222.2 84% 4.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 222.2 84% 4.9%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 222.2 84% 4.9%;
+      --primary: 262.1 83.3% 57.8%;
+      --primary-foreground: 210 40% 98%;
+      --secondary: 210 40% 96.1%;
+      --secondary-foreground: 222.2 47.4% 11.2%;
+      --muted: 210 40% 96.1%;
+      --muted-foreground: 215.4 16.3% 46.9%;
+      --accent: 210 40% 96.1%;
+      --accent-foreground: 222.2 47.4% 11.2%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 210 40% 98%;
+      --border: 214.3 31.8% 91.4%;
+      --input: 214.3 31.8% 91.4%;
+      --ring: 262.1 83.3% 57.8%;
+      --radius: 0.5rem;
+    }
+
+    .dark {
+      --background: 222.2 84% 4.9%;
+      --foreground: 210 40% 98%;
+      --card: 222.2 84% 4.9%;
+      --card-foreground: 210 40% 98%;
+      --popover: 222.2 84% 4.9%;
+      --popover-foreground: 210 40% 98%;
+      --primary: 262.1 83.3% 57.8%;
+      --primary-foreground: 210 40% 98%;
+      --secondary: 217.2 32.6% 17.5%;
+      --secondary-foreground: 210 40% 98%;
+      --muted: 217.2 32.6% 17.5%;
+      --muted-foreground: 215 20.2% 65.1%;
+      --accent: 217.2 32.6% 17.5%;
+      --accent-foreground: 210 40% 98%;
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 210 40% 98%;
+      --border: 217.2 32.6% 17.5%;
+      --input: 217.2 32.6% 17.5%;
+      --ring: 262.1 83.3% 57.8%;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      transition: background-color 0.3s, color 0.3s;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-col {
+      flex-direction: column;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    .text-gradient {
+      background: linear-gradient(to right, hsl(var(--primary)), #9333ea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .bg-gradient {
+      background: linear-gradient(to right, hsl(var(--primary)), #9333ea);
+    }
+
+    .rounded-full {
+      border-radius: 9999px;
+    }
+
+    .rounded-lg {
+      border-radius: 0.5rem;
+    }
+
+    .rounded-xl {
+      border-radius: 0.75rem;
+    }
+
+    .rounded-2xl {
+      border-radius: 1rem;
+    }
+
+    .shadow-md {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .shadow-lg {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .shadow-xl {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .py-2 {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .py-4 {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .py-6 {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .py-8 {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .py-12 {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .py-16 {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    .py-24 {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    .px-2 {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .px-6 {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .px-8 {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .pt-24 {
+      padding-top: 6rem;
+    }
+
+    .mb-2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem;
+    }
+
+    .mb-6 {
+      margin-bottom: 1.5rem;
+    }
+
+    .mb-8 {
+      margin-bottom: 2rem;
+    }
+
+    .mb-12 {
+      margin-bottom: 3rem;
+    }
+
+    .mb-16 {
+      margin-bottom: 4rem;
+    }
+
+    .mt-2 {
+      margin-top: 0.5rem;
+    }
+
+    .mt-4 {
+      margin-top: 1rem;
+    }
+
+    .mt-6 {
+      margin-top: 1.5rem;
+    }
+
+    .mt-8 {
+      margin-top: 2rem;
+    }
+
+    .mt-12 {
+      margin-top: 3rem;
+    }
+
+    .mt-16 {
+      margin-top: 4rem;
+    }
+
+    .mr-2 {
+      margin-right: 0.5rem;
+    }
+
+    .mr-4 {
+      margin-right: 1rem;
+    }
+
+    .ml-2 {
+      margin-left: 0.5rem;
+    }
+
+    .ml-4 {
+      margin-left: 1rem;
+    }
+
+    .ml-auto {
+      margin-left: auto;
+    }
+
+    .gap-2 {
+      gap: 0.5rem;
+    }
+
+    .gap-4 {
+      gap: 1rem;
+    }
+
+    .gap-6 {
+      gap: 1.5rem;
+    }
+
+    .gap-8 {
+      gap: 2rem;
+    }
+
+    .gap-12 {
+      gap: 3rem;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    .max-w-sm {
+      max-width: 24rem;
+    }
+
+    .max-w-md {
+      max-width: 28rem;
+    }
+
+    .max-w-lg {
+      max-width: 32rem;
+    }
+
+    .max-w-xl {
+      max-width: 36rem;
+    }
+
+    .max-w-2xl {
+      max-width: 42rem;
+    }
+
+    .max-w-3xl {
+      max-width: 48rem;
+    }
+
+    .max-w-4xl {
+      max-width: 56rem;
+    }
+
+    .max-w-5xl {
+      max-width: 64rem;
+    }
+
+    .max-w-6xl {
+      max-width: 72rem;
+    }
+
+    .h-5 {
+      height: 1.25rem;
+    }
+
+    .h-6 {
+      height: 1.5rem;
+    }
+
+    .h-8 {
+      height: 2rem;
+    }
+
+    .h-10 {
+      height: 2.5rem;
+    }
+
+    .h-12 {
+      height: 3rem;
+    }
+
+    .h-16 {
+      height: 4rem;
+    }
+
+    .h-20 {
+      height: 5rem;
+    }
+
+    .h-24 {
+      height: 6rem;
+    }
+
+    .h-32 {
+      height: 8rem;
+    }
+
+    .h-48 {
+      height: 12rem;
+    }
+
+    .h-64 {
+      height: 16rem;
+    }
+
+    .h-auto {
+      height: auto;
+    }
+
+    .h-full {
+      height: 100%;
+    }
+
+    .h-screen {
+      height: 100vh;
+    }
+
+    .min-h-screen {
+      min-height: 100vh;
+    }
+
+    .w-5 {
+      width: 1.25rem;
+    }
+
+    .w-6 {
+      width: 1.5rem;
+    }
+
+    .w-8 {
+      width: 2rem;
+    }
+
+    .w-10 {
+      width: 2.5rem;
+    }
+
+    .w-12 {
+      width: 3rem;
+    }
+
+    .w-16 {
+      width: 4rem;
+    }
+
+    .w-20 {
+      width: 5rem;
+    }
+
+    .w-24 {
+      width: 6rem;
+    }
+
+    .w-32 {
+      width: 8rem;
+    }
+
+    .w-48 {
+      width: 12rem;
+    }
+
+    .w-64 {
+      width: 16rem;
+    }
+
+    .w-auto {
+      width: auto;
+    }
+
+    .w-1\/2 {
+      width: 50%;
+    }
+
+    .w-1\/3 {
+      width: 33.333333%;
+    }
+
+    .w-2\/3 {
+      width: 66.666667%;
+    }
+
+    .w-1\/4 {
+      width: 25%;
+    }
+
+    .w-3\/4 {
+      width: 75%;
+    }
+
+    .w-1\/5 {
+      width: 20%;
+    }
+
+    .w-2\/5 {
+      width: 40%;
+    }
+
+    .w-3\/5 {
+      width: 60%;
+    }
+
+    .w-4\/5 {
+      width: 80%;
+    }
+
+    .w-1\/6 {
+      width: 16.666667%;
+    }
+
+    .w-5\/6 {
+      width: 83.333333%;
+    }
+
+    .text-xs {
+      font-size: 0.75rem;
+      line-height: 1rem;
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .text-base {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+    }
+
+    .text-xl {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+    }
+
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+
+    .text-4xl {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
+
+    .text-5xl {
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .text-6xl {
+      font-size: 3.75rem;
+      line-height: 1;
+    }
+
+    .font-normal {
+      font-weight: 400;
+    }
+
+    .font-medium {
+      font-weight: 500;
+    }
+
+    .font-semibold {
+      font-weight: 600;
+    }
+
+    .font-bold {
+      font-weight: 700;
+    }
+
+    .font-extrabold {
+      font-weight: 800;
+    }
+
+    .text-white {
+      color: white;
+    }
+
+    .text-black {
+      color: black;
+    }
+
+    .text-primary {
+      color: hsl(var(--primary));
+    }
+
+    .text-muted {
+      color: hsl(var(--muted-foreground));
+    }
+
+    .bg-white {
+      background-color: white;
+    }
+
+    .bg-black {
+      background-color: black;
+    }
+
+    .bg-primary {
+      background-color: hsl(var(--primary));
+    }
+
+    .bg-muted {
+      background-color: hsl(var(--muted));
+    }
+
+    .bg-transparent {
+      background-color: transparent;
+    }
+
+    .border {
+      border-width: 1px;
+      border-style: solid;
+      border-color: hsl(var(--border));
+    }
+
+    .border-t {
+      border-top-width: 1px;
+      border-top-style: solid;
+      border-top-color: hsl(var(--border));
+    }
+
+    .border-b {
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: hsl(var(--border));
+    }
+
+    .border-primary {
+      border-color: hsl(var(--primary));
+    }
+
+    .hover\:bg-primary:hover {
+      background-color: hsl(var(--primary));
+    }
+
+    .hover\:text-white:hover {
+      color: white;
+    }
+
+    .hover\:text-primary:hover {
+      color: hsl(var(--primary));
+    }
+
+    .hover\:shadow-lg:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .hover\:scale-105:hover {
+      transform: scale(1.05);
+    }
+
+    .transition {
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+    }
+
+    .transition-all {
+      transition-property: all;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+    }
+
+    .duration-300 {
+      transition-duration: 300ms;
+    }
+
+    .duration-500 {
+      transition-duration: 500ms;
+    }
+
+    .duration-1000 {
+      transition-duration: 1000ms;
+    }
+
+    .transform {
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    }
+
+    .rotate-3 {
+      --tw-rotate: 3deg;
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    }
+
+    .hover\:rotate-0:hover {
+      --tw-rotate: 0deg;
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    }
+
+    .translate-y-8 {
+      --tw-translate-y: 2rem;
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    }
+
+    .opacity-0 {
+      opacity: 0;
+    }
+
+    .opacity-100 {
+      opacity: 1;
+    }
+
+    .overflow-hidden {
+      overflow: hidden;
+    }
+
+    .object-cover {
+      object-fit: cover;
+    }
+
+    .object-contain {
+      object-fit: contain;
+    }
+
+    .fixed {
+      position: fixed;
+    }
+
+    .absolute {
+      position: absolute;
+    }
+
+    .relative {
+      position: relative;
+    }
+
+    .top-0 {
+      top: 0;
+    }
+
+    .left-0 {
+      left: 0;
+    }
+
+    .right-0 {
+      right: 0;
+    }
+
+    .bottom-0 {
+      bottom: 0;
+    }
+
+    .z-10 {
+      z-index: 10;
+    }
+
+    .z-20 {
+      z-index: 20;
+    }
+
+    .z-30 {
+      z-index: 30;
+    }
+
+    .z-40 {
+      z-index: 40;
+    }
+
+    .z-50 {
+      z-index: 50;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .block {
+      display: block;
+    }
+
+    .inline-block {
+      display: inline-block;
+    }
+
+    .grid {
+      display: grid;
+    }
+
+    .grid-cols-1 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .space-y-2 > * + * {
+      margin-top: 0.5rem;
+    }
+
+    .space-y-4 > * + * {
+      margin-top: 1rem;
+    }
+
+    .space-y-6 > * + * {
+      margin-top: 1.5rem;
+    }
+
+    .space-x-2 > * + * {
+      margin-right: 0.5rem;
+    }
+
+    .space-x-4 > * + * {
+      margin-right: 1rem;
+    }
+
+    .space-x-6 > * + * {
+      margin-right: 1.5rem;
+    }
+
+    .divide-y > * + * {
+      border-top-width: 1px;
+      border-top-style: solid;
+      border-top-color: hsl(var(--border));
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    .animate-bounce {
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+      }
+      50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+      }
+    }
+
+    .animate-spin {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .backdrop-blur-md {
+      backdrop-filter: blur(12px);
+    }
+
+    .bg-opacity-80 {
+      --tw-bg-opacity: 0.8;
+    }
+
+    .bg-opacity-50 {
+      --tw-bg-opacity: 0.5;
+    }
+
+    .bg-opacity-20 {
+      --tw-bg-opacity: 0.2;
+    }
+
+    .bg-opacity-10 {
+      --tw-bg-opacity: 0.1;
+    }
+
+    /* Button Styles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+
+    .btn-primary:hover {
+      background-color: hsl(var(--primary) / 0.9);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid hsl(var(--border));
+    }
+
+    .btn-outline:hover {
+      background-color: hsl(var(--muted));
+    }
+
+    .btn-lg {
+      padding: 0.75rem 1.5rem;
+      font-size: 1.125rem;
+    }
+
+    .btn-icon {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+    }
+
+    /* Form Styles */
+    .form-input {
+      width: 100%;
+      border-radius: 0.5rem;
+      border: 1px solid hsl(var(--border));
+      padding: 0.5rem 1rem;
+      background-color: transparent;
+      color: hsl(var(--foreground));
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: hsl(var(--primary));
+      box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+    }
+
+    .form-textarea {
+      width: 100%;
+      border-radius: 0.5rem;
+      border: 1px solid hsl(var(--border));
+      padding: 0.5rem 1rem;
+      background-color: transparent;
+      color: hsl(var(--foreground));
+      resize: vertical;
+    }
+
+    .form-textarea:focus {
+      outline: none;
+      border-color: hsl(var(--primary));
+      box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+    }
+
+    /* Card Styles */
+    .card {
+      background-color: hsl(var(--card));
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+    }
+
+    /* Accordion Styles */
+    .accordion {
+      width: 100%;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      text-align: right;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .accordion-content {
+      padding-bottom: 1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .accordion-content.open {
+      max-height: 500px;
+    }
+
+    /* Modern Search Styles */
+    .search-container {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      border-radius: 1rem;
+      overflow: hidden;
+      background-color: hsl(var(--background));
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 1rem 3rem 1rem 1rem;
+      border: none;
+      background-color: transparent;
+      font-size: 1rem;
+      color: hsl(var(--foreground));
+      border-radius: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px hsl(var(--primary) / 0.3);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: hsl(var(--muted-foreground));
+      pointer-events: none;
+    }
+
+    .search-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .search-tag {
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+      border: 1px solid hsl(var(--border));
+      cursor: pointer;
+    }
+
+    .search-tag:hover {
+      background-color: hsl(var(--primary) / 0.1);
+      border-color: hsl(var(--primary));
+      color: hsl(var(--primary));
+    }
+
+    /* Mobile Menu Styles */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background-color: hsl(var(--background));
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+      z-index: 100;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-menu.open {
+      right: 0;
+    }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(3px);
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: hsl(var(--foreground));
+    }
+
+    .mobile-menu-items {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mobile-menu-item {
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-menu-item:hover {
+      background-color: hsl(var(--muted));
+    }
+
+    /* Responsive Styles */
+    @media (min-width: 640px) {
+      .sm\:flex {
+        display: flex;
+      }
+
+      .sm\:flex-row {
+        flex-direction: row;
+      }
+
+      .sm\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .sm\:w-auto {
+        width: auto;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .md\:flex {
+        display: flex;
+      }
+
+      .md\:hidden {
+        display: none;
+      }
+
+      .md\:flex-row {
+        flex-direction: row;
+      }
+
+      .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .md\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .md\:w-1\/2 {
+        width: 50%;
+      }
+
+      .md\:w-1\/3 {
+        width: 33.333333%;
+      }
+
+      .md\:w-2\/3 {
+        width: 66.666667%;
+      }
+
+      .md\:w-auto {
+        width: auto;
+      }
+
+      .md\:py-24 {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+      }
+
+      .md\:px-6 {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .md\:text-4xl {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+      }
+
+      .md\:text-5xl {
+        font-size: 3rem;
+        line-height: 1;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .lg\:flex {
+        display: flex;
+      }
+
+      .lg\:hidden {
+        display: none;
+      }
+
+      .lg\:flex-row {
+        flex-direction: row;
+      }
+
+      .lg\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .lg\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .lg\:w-1\/3 {
+        width: 33.333333%;
+      }
+
+      .lg\:w-2\/3 {
+        width: 66.666667%;
+      }
+
+      .lg\:w-auto {
+        width: auto;
+      }
+
+      .lg\:text-6xl {
+        font-size: 3.75rem;
+        line-height: 1;
+      }
+
+      .lg\:order-last {
+        order: 9999;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 right-0 left-0 z-50 transition-all duration-300 py-4 bg-transparent">
+      <div class="container flex items-center justify-between">
+        <a href="#" class="flex items-center">
+          <span class="text-2xl font-bold text-gradient">فيو كاست</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="#features" class="text-foreground hover:text-primary transition-colors mr-4">الميزات</a>
+          <a href="#download" class="text-foreground hover:text-primary transition-colors mr-4">التحميل</a>
+          <a href="#reviews" class="text-foreground hover:text-primary transition-colors mr-4">التقييمات</a>
+          <a href="#support" class="text-foreground hover:text-primary transition-colors mr-4">الدعم</a>
+          <button id="theme-toggle" class="btn btn-icon transition-transform hover:scale-110 duration-300" aria-label="تبديل السمة">
+            <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 rotate-0 scale-100 transition-all duration-300">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <a href="#https://www.raed.net/download?fileid=1263545" class="btn btn-primary">تحميل الآن</a>
+        </nav>
+
+        <!-- Mobile Navigation Toggle -->
+        <div class="flex items-center md:hidden space-x-4">
+          <button id="theme-toggle-mobile" class="btn btn-icon transition-transform hover:scale-110 duration-300" aria-label="تبديل السمة">
+            <svg id="theme-icon-mobile" xmlns="https://www.raed.net/download?fileid=1263545" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 rotate-0 scale-100 transition-all duration-300">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <button id="mobile-menu-toggle" class="btn btn-icon" aria-label="تبديل القائمة">
+            <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu-overlay" class="md:hidden"></div>
+      <div id="mobile-menu" class="mobile-menu md:hidden">
+        <button id="mobile-menu-close" class="mobile-menu-close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div class="mobile-menu-items">
+          <a href="#features" class="mobile-menu-item">الميزات</a>
+          <a href="#download" class="mobile-menu-item">التحميل</a>
+          <a href="#reviews" class="mobile-menu-item">التقييمات</a>
+          <a href="#support" class="mobile-menu-item">الدعم</a>
+          <a href="#download" class="btn btn-primary w-full mt-4">تحميل الآن</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="hero" class="pt-24 pb-16 md:pt-32 md:pb-24 opacity-0 transition-opacity duration-1000">
+        <div class="container px-4">
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gradient">
+                شاهد الرياضة كما لم تشاهدها من قبل
+              </h1>
+              <p class="text-xl text-muted mb-8">
+                شاهد دوري أبطال أوروبا وأهم الأحداث الرياضية مباشرة مع فيو كاست. التطبيق المجاني الأمثل لعشاق الرياضة.
+              </p>
+<a href="https://www.raed.net/download?fileid=1263545" class="btn btn-primary btn-lg flex items-center gap-2">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+    <polyline points="7 10 12 15 17 10"></polyline>
+    <line x1="12" y1="15" x2="12" y2="3"></line>
+  </svg>
+  تحميل مجاني
+</a>
+              </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+              <div class="relative w-[280px] h-[560px] md:w-[320px] md:h-[640px] rounded-3xl overflow-hidden shadow-2xl transform transition-transform hover:scale-105 duration-500">
+                <img src="https://b.top4top.io/p_3366kx18q1.jpg" alt="تطبيق فيو كاست" class="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center mt-16">
+            <button class="btn btn-icon animate-bounce" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+              <span class="sr-only">التمرير للأسفل</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="py-16 md:py-24 bg-muted bg-opacity-50">
+        <div class="container px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              ميزات قوية
+            </h2>
+            <p class="text-xl text-muted max-w-2xl mx-auto">
+              اكتشف ما يجعل فيو كاست التطبيق الأمثل لبث الرياضة
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="bg-background rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 opacity-0 transform translate-y-8">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-primary">
+                  <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                  <polyline points="17 2 12 7 7 2"></polyline>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">بث مباشر للقنوات الرياضية</h3>
+              <p class="text-muted">توفير بث مباشر لأهم المباريات الرياضية عبر الإنترنت بجودة عالية.</p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="bg-background rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 opacity-0 transform translate-y-8">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-primary">
+                  <path d="M12 2v8"></path>
+                  <path d="m16 6-4 4-4-4"></path>
+                  <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">محتوى حسب الطلب</h3>
+              <p class="text-muted">تمكين المستخدمين من مشاهدة المباريات المفضلة في أي وقت بكل سهولة.</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="bg-background rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 opacity-0 transform translate-y-8">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-primary">
+                  <path d="M12 2v4"></path>
+                  <path d="M12 18v4"></path>
+                  <path d="M4.93 4.93l2.83 2.83"></path>
+                  <path d="M16.24 16.24l2.83 2.83"></path>
+                  <path d="M2 12h4"></path>
+                  <path d="M18 12h4"></path>
+                  <path d="M4.93 19.07l2.83-2.83"></path>
+                  <path d="M16.24 7.76l2.83-2.83"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">تحديثات حية</h3>
+              <p class="text-muted">عرض تحديثات فورية للنتائج والمباريات الجارية لمتابعة كل جديد.</p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="bg-background rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 opacity-0 transform translate-y-8">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-primary">
+                  <path d="m5 8 6 6"></path>
+                  <path d="m4 14 6-6 2-3"></path>
+                  <path d="M2 5h12"></path>
+                  <path d="M7 2h1"></path>
+                  <path d="m22 22-5-5"></path>
+                  <path d="M17 8v.5"></path>
+                  <path d="M17 17v.5"></path>
+                  <path d="M12 17h.5"></path>
+                  <path d="M12 12h.5"></path>
+                  <path d="M17 12h.5"></path>
+                  <path d="M17 13v-.5"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">دعم متعدد اللغات</h3>
+              <p class="text-muted">توفير واجهة متعددة اللغات مثل العربية، الإنجليزية والفارسية لتناسب الجميع.</p>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="bg-background rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 opacity-0 transform translate-y-8">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-primary">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">إشعارات المباريات</h3>
+              <p class="text-muted">إرسال إشعارات للمستخدمين حول المباريات المقبلة لعدم تفويت أي حدث.</p>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="bg-background rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 opacity-0 transform translate-y-8">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-primary">
+                  <path d="M12 2v4"></path>
+                  <path d="M20 12h-4"></path>
+                  <path d="M12 18v4"></path>
+                  <path d="M4 12H0"></path>
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">دعم لجودة الفيديو المختلفة</h3>
+              <p class="text-muted">دعم دقة الفيديو من 720p إلى 4K حسب الاتصال بالإنترنت لتجربة مشاهدة مثالية.</p>
+            </div>
+
+            <!-- Feature 7 -->
+            <div class="bg-background rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 opacity-0 transform translate-y-8">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-primary">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">واجهة مستخدم سهلة الاستخدام</h3>
+              <p class="text-muted">تصميم بسيط وسهل التنقل يناسب جميع المستخدمين بمختلف مستوياتهم.</p>
+            </div>
+
+            <!-- Feature 8 -->
+            <div class="bg-background rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 opacity-0 transform translate-y-8">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-primary">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">البحث المتقدم</h3>
+              <p class="text-muted">توفير خيار للبحث عن القنوات أو المباريات بسهولة للوصول السريع للمحتوى.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Download Section -->
+      <section id="download" class="py-16 md:py-24 opacity-0 transition-opacity duration-1000">
+        <div class="container px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              تحميل فيو كاست
+            </h2>
+            <p class="text-xl text-muted max-w-2xl mx-auto">
+              احصل على التطبيق المجاني على جهازك واستمتع بالبث الرياضي
+            </p>
+          </div>
+
+          <div class="flex flex-col lg:flex-row items-center justify-center gap-12">
+            <div class="lg:w-1/2 flex flex-col items-center">
+              <div class="bg-background rounded-2xl p-6 shadow-lg mb-6 w-full max-w-sm">
+                <div class="flex items-center justify-center mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary ml-2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                  <h3 class="text-xl font-semibold">كود التحميل</h3>
+                </div>
+                <div class="bg-white p-4 rounded-lg flex justify-center">
+                  <img src="https://g.top4top.io/p_3366ur6ob1.png" alt="كود التحميل" class="w-48 h-48" />
+                </div>
+                <p class="text-center mt-4 text-sm text-muted">
+                  يمكنك من خلال هذا الكود تحميل التطبيق من Downloader
+                </p>
+              </div>
+            </div>
+
+            <div class="lg:w-1/2 flex flex-col items-center">
+              <div class="bg-background rounded-2xl p-6 shadow-lg mb-6 w-full max-w-sm">
+                <div class="flex items-center justify-center mb-6">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary ml-2">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                  </svg>
+                  <h3 class="text-xl font-semibold">تحميل مباشر</h3>
+                </div>
+                <div class="space-y-4">
+                  <a href="#" class="btn btn-primary w-full flex items-center justify-center gap-2" style="background-color: #3DDC84; color: black;">
+                    <svg xmlns="https://www.raed.net/download?fileid=1263545" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    تحميل للأندرويد
+                  </a>
+                  <p class="text-center text-sm text-muted">
+                    التطبيق مجاني تمامًا وبدون أي اشتراكات
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Review Section -->
+      <section id="reviews" class="py-16 md:py-24 opacity-0 transition-opacity duration-1000">
+        <div class="container px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              ماذا يقول مستخدمينا
+            </h2>
+            <p class="text-xl text-muted max-w-2xl mx-auto">
+              انضم إلى آلاف المشجعين الرياضيين الراضين الذين يستخدمون فيو كاست
+            </p>
+          </div>
+
+          <div class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Review 1 -->
+              <div class="bg-background rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <h3 class="font-semibold text-lg">علي الحسيني</h3>
+                  <span class="text-sm text-muted time-ago" data-time="45">قبل 45 دقيقة</span>
+                </div>
+                <div class="flex mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                </div>
+                <p class="text-muted">والله تطبيق يجنن  وما يكطع أبد أحلى شي بي يمي أتابع الدوري الإنجليزي بدون مشاكل اتمنى تستمرون بتطويرة</p>
+              </div>
+
+              <!-- Review 2 -->
+              <div class="bg-background rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <h3 class="font-semibold text-lg">حسين علي</h3>
+                  <span class="text-sm text-muted time-ago" data-time="120">قبل ساعتين</span>
+                </div>
+                <div class="flex mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#D1D5DB" stroke="#D1D5DB" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                </div>
+                <p class="text-muted">تطبيق خرافي ومجاني شكد حلو اكدر اشوف مباريات ريال مدريد واني بالبيت بس لو تضيفون دوريات أكثر يصير أحسن تطبيق</p>
+              </div>
+
+              <!-- Review 3 -->
+              <div class="bg-background rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <h3 class="font-semibold text-lg">ابو حسن</h3>
+                  <span class="text-sm text-muted time-ago" data-time="30">قبل 30 دقيقة</span>
+                </div>
+                <div class="flex mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                </div>
+                <p class="text-muted">والله هذا التطبيق شي خيالي الصورة واضحة والصوت عالي احسن من كل البرامج اللي جربتها عاشت ايدكم</p>
+              </div>
+            </div>
+
+            <!-- Review Form -->
+            <div class="bg-muted rounded-xl p-6 md:p-8 mt-12">
+              <div class="flex items-center mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary ml-2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <h3 class="text-xl font-semibold">شارك تجربتك</h3>
+              </div>
+              <form>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label for="name" class="block mb-2 text-sm font-medium">
+                      اسمك
+                    </label>
+                    <input id="name" type="text" class="form-input" placeholder="أدخل اسمك" required />
+                  </div>
+                  <div>
+                    <label for="rating" class="block mb-2 text-sm font-medium">
+                      التقييم
+                    </label>
+                    <div class="flex">
+                      <button type="button" class="focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                      </button>
+                      <button type="button" class="focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                      </button>
+                      <button type="button" class="focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                      </button>
+                      <button type="button" class="focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                      </button>
+                      <button type="button" class="focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FBBF24" stroke="#FBBF24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-6">
+                  <label for="comment" class="block mb-2 text-sm font-medium">
+                    تعليقك
+                  </label>
+                  <textarea id="comment" class="form-textarea" placeholder="شارك تجربتك مع فيو كاست" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">إرسال التقييم</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search Section -->
+      <section class="py-16 md:py-24 bg-muted bg-opacity-50 opacity-0 transition-opacity duration-1000">
+        <div class="container px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              ابحث عما تريد
+            </h2>
+            <p class="text-xl text-muted max-w-2xl mx-auto">
+              اكتشف الميزات والأحداث الرياضية والمزيد باستخدام البحث
+            </p>
+          </div>
+
+          <div class="max-w-2xl mx-auto">
+            <div class="search-container relative">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" placeholder="ابحث عن الميزات، الرياضات، الدوريات..." class="search-input" />
+            </div>
+
+            <div class="mt-8">
+              <h3 class="text-lg font-semibold mb-4">عمليات البحث الشائعة</h3>
+              <div class="search-tags">
+                <button class="search-tag">دوري أبطال أوروبا</button>
+                <button class="search-tag">الدوري الإنجليزي</button>
+                <button class="search-tag">الدوري الإسباني</button>
+                <button class="search-tag">الدوري الإيطالي</button>
+                <button class="search-tag">الدوري الألماني</button>
+                <button class="search-tag">كرة السلة</button>
+                <button class="search-tag">كرة القدم</button>
+                <button class="search-tag">التنس</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section id="support" class="py-16 md:py-24 opacity-0 transition-opacity duration-1000">
+        <div class="container px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">مركز الدعم</h2>
+            <p class="text-xl text-muted max-w-2xl mx-auto">
+              ابحث عن إجابات للأسئلة الشائعة أو تواصل مع فريق الدعم
+            </p>
+          </div>
+
+          <div class="max-w-3xl mx-auto">
+            <div class="flex justify-center mb-8">
+              <div class="inline-flex rounded-lg border p-1">
+                <button id="faq-tab" class="btn btn-primary rounded-md px-6">
+                  الأسئلة الشائعة
+                </button>
+                <button id="contact-tab" class="btn btn-outline rounded-md px-6">
+                  اتصل بالدعم
+                </button>
+              </div>
+            </div>
+
+            <div id="faq-content">
+              <div class="accordion">
+                <!-- FAQ Item 1 -->
+                <div class="accordion-item">
+                  <div class="accordion-trigger">
+                    <span>كيف يمكنني تحميل فيو كاست على جهازي؟</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                  <div class="accordion-content">
+                    <p>يمكنك تحميل فيو كاست مباشرة من موقعنا الإلكتروني أو عن طريق مسح كود التحميل الموجود في صفحة التحميل.</p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="accordion-item">
+                  <div class="accordion-trigger">
+                    <span>هل فيو كاست مجاني للاستخدام؟</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                  <div class="accordion-content">
+                    <p>نعم، فيو كاست مجاني تمامًا للاستخدام ولا يوجد أي اشتراكات أو رسوم مخفية.</p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="accordion-item">
+                  <div class="accordion-trigger">
+                    <span>ما هي الأحداث الرياضية التي يمكنني مشاهدتها على فيو كاست؟</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                  <div class="accordion-content">
+                    <p>يوفر فيو كاست تغطية لمجموعة واسعة من الأحداث الرياضية بما في ذلك كرة القدم (دوري أبطال أوروبا، الدوري الإنجليزي، الدوري الإسباني، إلخ)، كرة السلة، التنس، فورمولا 1، الكريكيت، والعديد من الرياضات الأخرى.</p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="accordion-item">
+                  <div class="accordion-trigger">
+                    <span>كم عدد الأجهزة التي يمكنني استخدامها مع حساب واحد؟</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                  <div class="accordion-content">
+                    <p>يمكنك استخدام فيو كاست على عدد غير محدود من الأجهزة، فقط قم بتسجيل الدخول باستخدام حسابك.</p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="accordion-item">
+                  <div class="accordion-trigger">
+                    <span>ما هي سرعة الإنترنت التي أحتاجها للبث السلس؟</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                  <div class="accordion-content">
+                    <p>للبث بدقة قياسية، نوصي بسرعة 5 ميجابت في الثانية على الأقل. للبث بدقة عالية، 10 ميجابت في الثانية أو أعلى هو المستحسن. للمحتوى بدقة 4K، 25 ميجابت في الثانية أو أعلى ستوفر أفضل تجربة.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="contact-content" class="hidden">
+              <div class="bg-background rounded-xl p-6 shadow-md">
+                <div class="flex items-center mb-6">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary ml-2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  <h3 class="text-xl font-semibold">تواصل معنا</h3>
+                </div>
+                <form class="space-y-6">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label for="contact-name" class="block mb-2 text-sm font-medium">
+                        اسمك
+                      </label>
+                      <input id="contact-name" type="text" class="form-input" placeholder="أدخل اسمك" required />
+                    </div>
+                    <div>
+                      <label for="contact-email" class="block mb-2 text-sm font-medium">
+                        البريد الإلكتروني
+                      </label>
+                      <input id="contact-email" type="email" class="form-input" placeholder="أدخل بريدك الإلكتروني" required />
+                    </div>
+                  </div>
+                  <div>
+                    <label for="contact-subject" class="block mb-2 text-sm font-medium">
+                      الموضوع
+                    </label>
+                    <input id="contact-subject" type="text" class="form-input" placeholder="ما هو استفسارك؟" required />
+                  </div>
+                  <div>
+                    <label for="contact-message" class="block mb-2 text-sm font-medium">
+                      الرسالة
+                    </label>
+                    <textarea id="contact-message" class="form-textarea" placeholder="يرجى وصف مشكلتك أو سؤالك بالتفصيل" rows="5" required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-full md:w-auto">
+                    إرسال الرسالة
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Promotion Section -->
+      <section class="py-16 md:py-24 bg-muted bg-opacity-50 opacity-0 transition-opacity duration-1000">
+        <div class="container px-4">
+          <div class="bg-gradient rounded-2xl overflow-hidden shadow-xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 md:p-12">
+              <div class="flex flex-col justify-center">
+                <div class="inline-flex items-center bg-white bg-opacity-20 rounded-full px-4 py-1 text-white text-sm font-medium mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 ml-2">
+                    <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
+                    <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
+                    <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+                  </svg>
+                  <span>تطبيق مجاني</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                  احصل على فيو كاست الآن!
+                </h2>
+                <p class="text-white text-opacity-90 mb-6">
+                  استمتع بمشاهدة أهم الأحداث الرياضية مباشرة على جهازك. تطبيق مجاني بالكامل بدون أي اشتراكات.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                  <a href="#download" class="btn btn-lg bg-white text-primary hover:bg-white hover:bg-opacity-90">
+                    تحميل الآن
+                  </a>
+                  <a href="#features" class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:bg-opacity-20">
+                    تعرف على المزيد
+                  </a>
+                </div>
+              </div>
+              <div class="flex justify-center items-center">
+                <div class="relative w-[240px] h-[480px] md:w-[280px] md:h-[560px] rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                  <img src="https://via.placeholder.com/280x560" alt="فيو كاست" class="w-full h-full object-cover" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-muted py-12 border-t">
+      <div class="container px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div>
+            <a href="#" class="inline-block mb-4">
+              <span class="text-2xl font-bold text-gradient">فيو كاست</span>
+            </a>
+            <p class="text-muted mb-4">
+              تطبيق البث الرياضي الأمثل لعشاق الرياضة. شاهد المباريات المباشرة في أي وقت وأي مكان.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="btn btn-icon" aria-label="فيسبوك">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </a>
+              <a href="#" class="btn btn-icon" aria-label="تويتر">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                </svg>
+              </a>
+              <a href="#" class="btn btn-icon" aria-label="انستغرام">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <a href="#" class="btn btn-icon" aria-label="يوتيوب">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg mb-4">روابط سريعة</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#features" class="text-muted hover:text-primary transition-colors">
+                  الميزات
+                </a>
+              </li>
+              <li>
+                <a href="#download" class="text-muted hover:text-primary transition-colors">
+                  التحميل
+                </a>
+              </li>
+              <li>
+                <a href="#reviews" class="text-muted hover:text-primary transition-colors">
+                  التقييمات
+                </a>
+              </li>
+              <li>
+                <a href="#support" class="text-muted hover:text-primary transition-colors">
+                  الدعم
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t pt-6 flex flex-col md:flex-row justify-between items-center">
+          <p class="text-sm text-muted mb-4 md:mb-0">
+            &copy; <span id="current-year"></span> فيو كاست. جميع الحقوق محفوظة.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-sm text-muted hover:text-primary transition-colors ml-4">
+              تواصل معنا
+            </a>
+            <a href="#" class="text-sm text-muted hover:text-primary transition-colors">
+              عن التطبيق
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // تحديد السنة الحالية
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // تبديل القائمة المتنقلة
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const menuIcon = document.getElementById('menu-icon');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      mobileMenuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      mobileMenuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+    document.querySelectorAll('.mobile-menu-item').forEach(item => {
+      item.addEventListener('click', closeMobileMenu);
+    });
+
+    // تبديل السمة (الوضع المظلم / الفاتح)
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeIconMobile = document.getElementById('theme-icon-mobile');
+    const html = document.documentElement;
+
+    // التحقق من وجود تفضيل مخزن
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+      html.classList.add('dark');
+      updateThemeIcons(true);
+    }
+
+    function updateThemeIcons(isDark) {
+      if (isDark) {
+        themeIcon.innerHTML = `
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        `;
+        themeIconMobile.innerHTML = `
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        `;
+      } else {
+        themeIcon.innerHTML = `
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        `;
+        themeIconMobile.innerHTML = `
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        `;
+      }
+    }
+
+    function toggleTheme() {
+      html.classList.toggle('dark');
+      const isDark = html.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateThemeIcons(isDark);
+    }
+
+    themeToggle.addEventListener('click', toggleTheme);
+    themeToggleMobile.addEventListener('click', toggleTheme);
+
+    // تغيير شفافية الهيدر عند التمرير
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.classList.add('bg-background', 'bg-opacity-80', 'backdrop-blur-md', 'shadow-md', 'py-2');
+        header.classList.remove('bg-transparent', 'py-4');
+      } else {
+        header.classList.remove('bg-background', 'bg-opacity-80', 'backdrop-blur-md', 'shadow-md', 'py-2');
+        header.classList.add('bg-transparent', 'py-4');
+      }
+    });
+
+    // تبديل علامات التبويب في قسم الدعم
+    const faqTab = document.getElementById('faq-tab');
+    const contactTab = document.getElementById('contact-tab');
+    const faqContent = document.getElementById('faq-content');
+    const contactContent = document.getElementById('contact-content');
+
+    faqTab.addEventListener('click', () => {
+      faqTab.classList.add('btn-primary');
+      faqTab.classList.remove('btn-outline');
+      contactTab.classList.add('btn-outline');
+      contactTab.classList.remove('btn-primary');
+      faqContent.classList.remove('hidden');
+      contactContent.classList.add('hidden');
+    });
+
+    contactTab.addEventListener('click', () => {
+      contactTab.classList.add('btn-primary');
+      contactTab.classList.remove('btn-outline');
+      faqTab.classList.add('btn-outline');
+      faqTab.classList.remove('btn-primary');
+      contactContent.classList.remove('hidden');
+      faqContent.classList.add('hidden');
+    });
+
+    // تنشيط الأكورديون
+    const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+    accordionTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const content = trigger.nextElementSibling;
+        content.classList.toggle('open');
+        if (content.classList.contains('open')) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+        } else {
+          content.style.maxHeight = '0';
+        }
+      });
+    });
+
+    // تنشيط تأثيرات التمرير
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // تطبيق المراقب على جميع الأقسام
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // تطبيق المراقب على عناصر الميزات
+    document.querySelectorAll('#features .bg-background').forEach(feature => {
+      observer.observe(feature);
+    });
+
+    // تحديث أوقات التعليقات
+    function updateTimeAgo() {
+      const timeElements = document.querySelectorAll('.time-ago');
+      const now = new Date();
+      
+      timeElements.forEach(el => {
+        const minutes = parseInt(el.getAttribute('data-time'));
+        const minutesAgo = minutes + Math.floor(Math.random() * 3); // زيادة الوقت بشكل عشوائي
+        
+        let timeText;
+        if (minutesAgo < 60) {
+          timeText = `قبل ${minutesAgo} دقيقة`;
+        } else {
+          const hours = Math.floor(minutesAgo / 60);
+          if (hours === 1) {
+            timeText = `قبل ساعة`;
+          } else if (hours === 2) {
+            timeText = `قبل ساعتين`;
+          } else if (hours >= 3 && hours <= 10) {
+            timeText = `قبل ${hours} ساعات`;
+          } else {
+            timeText = `قبل ${hours} ساعة`;
+          }
+        }
+        
+        el.textContent = timeText;
+        el.setAttribute('data-time', minutesAgo);
+      });
+    }
+
+    // تحديث الأوقات كل دقيقة
+    setInterval(updateTimeAgo, 60000);
+    updateTimeAgo(); // تحديث أولي
+  </script>
+</body>
+</html>
+
